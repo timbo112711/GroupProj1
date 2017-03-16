@@ -1,0 +1,68 @@
+---
+title: "Report"
+author: "Joseph Denney, Laurie Harris, and Timothy McWilliams"
+date: "March 20, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+## Introduction
+
+Each national economy is categorized into one of four income groupings by The World Bank (www.worldbank.org.)  The categories include:  low, lower-middle, upper-middle and high.  The income group classification is intended to define how well the population of a country lives and is based on Gross National Income Per Capita (GNIPC).
+
+The high-income category is further differentiated based on membership in the OECD (Organization for Economic Cooperation and Development.)  The organization states that its mission is to “promote policies that will improve the economic and social well-being of people around the world.”  (www.oecd.org) Current membership in the OECD includes 35 of the most advanced or emerging countries in the world.
+
+This analysis will examine the Gross Domestic Product (GDP), as an indicator of economic value, and the World Bank’s income grouping, as a measurement of population wealth, for 190 countries.  Specifically, we will review the differences in average GDP for high-income countries that are members in the OECD and those that are not.  We will also identify countries that have high GDP while qualifying for the lower-middle income grouping based on income per capita.
+
+## Data Gathering
+To begin the analysis, we have obtained the GDP rankings for 190 countries from http://data.worldbank.org/data-catalog/GDP-ranking-table. We have also obtained the income group classifications for each country from http://data.worldbank.org/data-catalog/ed-stats.
+
+```{r,code=readLines("GetFiles.R")}
+```
+
+## Data Tidying and Merging
+To ensure that our analysis considers relevant data for the 190 countries, some data tidying will be necessary.  We want to make sure our variables are consistently formatted and remove any fields that are not necessary for the analysis.
+
+```{r,code=readLines("DataChecks.R")}
+```
+
+Our next step is to merge the two data files, joining by the country code.
+
+```{r,code=readLines("MergedData.R")}
+```
+
+We note that there are 190 countries with GDP rankings and 189 matching countries with income groupings therefore, there is one country with an NA value because there is not an income group identified for it.  We have also sorted the data in ascending order of GDP.  To demonstrate the sorting, we have identified the country with the 13th GDP in our sorted data as St. Kitts and Nevis.
+
+## Comparision of GDP Rankings
+### High Income:  OEDC vs. non-OEDC
+We would like to examine some differences among the countries in the high-income group. By definition, these countries are considered to have the highest GNIPC, meaning that the citizens of these countries live quite well.  Specifically, we would like to determine if there is a difference in the economic development of these high-income countries for members of the OEDC vs. non-members of the OEDC.  To do this, we compare the average GDP rankings for each group, where a lower ranking would indicate higher economic development (GDP).
+
+```{r,code=readLines("Analysis.R")}
+```
+
+We note that the members of the OEDC appear to have higher levels of economic development, as their mean ranking is 32.97 compared to the mean ranking for non-OEDC countries of 91.91.  For this parameter, a lower valued ranking is associated with a higher GDP value.
+
+##GDP for all countries
+Additionally, we can illustrate GDP for the 190 countries in the plot below.
+
+```{r,code=readLines("Plot.R")}
+```
+
+*render plot
+
+##High GDP for low-middle income group
+In contrast to the analysis of the high-income countries above, we would like to determine if there are any countries that have a higher level of economic development (GDP) but are considered to have a lower standard of living (GNIPC).  To explore this area of interest we will determine if there are any countries with a relatively high GDP that belong in the low-middle income group.  To begin we will stratify the countries into quintiles according to their GDP.  We will then determine if any countries in the 80th to 100th percentiles belong to the lower middle income group.
+
+```{r,code=readLines("quintiles.R")}
+```
+
+There are five countries out of 38 countries in the highest GDP quintile, that belong to the lower middle income group.  This demonstrates that although a country may have a relatively high economic development it's citizens' standard of living may remain lower, compared to other countries.
+
+##Conclusion
+The analysis performed previously shows some surprising results. Membership in the OECD correlates with a higher average GDP. The average GDP ranking for OECD members is 32.97 vs. non-OECD members average ranking of 91.91. Please note there is no statement of causation here, but a simple noting that the average OECD member has a larger GDP than non-OECD members. Reasons for this difference are beyond the scope of this report. 
+
+While OECD countries have a higher average income than non-OECD, the relationship between GDP and standard of living as measured by the gross national income per capita (GNIPC) isn't as clean. The GNIPC is used here as a relative measure of standard of living, where a higher GNIPC is assumed to have a higher standard of living. After dividing the countries into five groups based on GDP, a comparison was made to see if all members of the highest GDP group also had the highest GNIPC. Interestingly, of the 38 members of the highest GDP group, five were found to be in the low-middle income group. Again, the reasons for this difference are beyond the scope of this project but do show that simply having a higher GDP does not necessarily translate into a higher average standard of living as measured by the GNIPC.
+
