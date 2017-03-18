@@ -36,3 +36,4 @@ print(filesList)
 #Add download timestamp to data
 dateDownloaded <- date()
 print(dateDownloaded)
+

@@ -3,7 +3,7 @@
 # Open working copies of the datafiles
 ##Need to verify files exist in working directory
 
-#setwd("C:\\Users\\TMccw\\OneDrive\\DataScience\\Intro_Doing_Data_Sicence\\CaseStudy1")
+setwd("~\\DataScience\\GroupProj1")
 
 #Set the required libraries
 library("dplyr", lib.loc="~/R/win-library/3.3")

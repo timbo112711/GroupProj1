@@ -16,3 +16,4 @@ missing.incomegroup <- sorted.merged.data[is.na(sorted.merged.data$Income.Group)
 cat("The number of NA values for the Income Group variable is equal to",nrow(missing.incomegroup),".The number of country IDs which match in both records is",(nrow(merged.data)-nrow(missing.incomegroup)),".  The analysis will continue with the matching records.")
 #Identify the 13th country listed in ascending order of GDP.
 cat("The 13th country listed by ascending GDP is", sorted.merged.data[13,3],".")
+

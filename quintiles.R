@@ -24,3 +24,4 @@ QuintileTable
 #Display number of countries that are in the lower middle income group and 
 #also in the highest quintile of GDP
 cat("There are", QuintileTable[4,5], "countries that are in the Lower middle income category but among the 38 nations with the highest GDP.")
+
