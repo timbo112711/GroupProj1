@@ -11,9 +11,7 @@
 
 # Gather the datasets
 
-#source("GetFiles.R")
-source("GetFiles2.R") ## Runs and may be solution if can't get the first to run with out a working directory ##
-#source("Data.R")  ## Runs, but not solution! ##
+source("GetFiles.R")
 
 # Clean the datasets
 
